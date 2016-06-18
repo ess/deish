@@ -59,8 +59,13 @@ container_names() {
 #
 #   container_ips my-container
 container_ips() {
-  local container=$1
-  docker inspect "${container}" | grep '"IPAddress"' | awk '{print $NF}' | sed -e 's/"//g' | sed -e 's/,//g'
+  if ! defined "${1}"
+  then
+    echo "no container name passed to container_ips" >&2
+    return 1
+  fi
+
+  docker inspect "${1}" | grep '"IPAddress"' | awk '{print $NF}' | sed -e 's/"//g' | sed -e 's/,//g'
 }
 
 # List out the IP address of each known named container
