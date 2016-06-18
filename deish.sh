@@ -179,8 +179,20 @@ delete_rule() {
 #  Application Helpers
 #-------------------------------------------------------------------------------
 
+# Get a list of all applications known to the cluster
+known_app_names() {
+  local app=""
+
+  for app in $(etcdctl ls /deis/config)
+  do
+    basename ${app}
+  done | sort
+}
+
 # Get a list of all domains for all applications, grouped by application name
 domains_by_app() {
+  local domain=""
+
   for domain in $(etcdctl ls /deis/domains)
   do 
     echo "$(etcdctl get ${domain}): $(basename ${domain})"
