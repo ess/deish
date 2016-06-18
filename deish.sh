@@ -4,7 +4,7 @@
 #          FILE:  deish.sh
 # 
 #   DESCRIPTION:  On-cluster troubleshooting utilities for Deis v1 clusters
-#       VERSION:  0.0.0
+#       VERSION:  0.0.1
 #===============================================================================
 
 #-------------------------------------------------------------------------------
